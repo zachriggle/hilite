@@ -24,15 +24,15 @@ def color(f,testPath=False):
     
     f=f.strip(' \r\n\t\'\"`')
     
-    if testPath and which(f):
+    if isdir(f):
+        color = dircolor
+    elif testPath and which(f):
         color = execolor
     elif 'http' in f:
         color = urlcolor
         attrs += ['underline']
     elif isfile(f) or looksLikeAFile(f):
         color = filecolor
-    elif isdir(f):
-        color = dircolor
     else:
         attrs += ['dark']
     
